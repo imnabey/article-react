@@ -1,10 +1,20 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
+import axios from 'axios';
 import Nav from './Nav.jsx';
 import './App.css';
 
 
 class App extends Component {
+  state = {
+    posts:[]
+  }
+  componentDidMount() {
+    axios.get('https://jsonplaceholder.typicode.com/posts')
+    .then(response => {
+      this.setState({posts: response.data});
+    })
+  }
   render() {
     return (
       <div className="App">
